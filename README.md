@@ -1,54 +1,57 @@
-
-## Noora_Health_handwriting_recognition
+# Noora Health X IITK Consulting Group
 ![Logo](https://i.postimg.cc/VNLcvBfn/iitkconsult-cover-1.jpg)
 
- 
+## Handwriting recognition and Medical chatbot
+
+This repository provides a thorough summary of the project done by IITK Consulting Group in collaboraton with Noora Health. Utilizing Google's Gemini ProVision and DocumentAI technologies, our team developed strong methods to pull tabular data from various images of paper documents. Furthermore, We developed a RAG model that can effectively answer user questions in various languages, with the help of an advanced translation interface using OpenAI.
+
 ## Project Overview:
 
-This repository is for Handwriting recognition of what nurses enter and pulling the text out digitally.
+### OCR
+The repository ```Streamlit_OCR``` is for the OCR part.
 
-We experimented using various **processors** available in Document AI on google cloud platform. 
+#### Prerequisites
 
-- Results obtained from CustomExtractor are present in ```CustomExtractor.ipynb```  
-- Results obtained using FormParser are present in ```FormParser.ipynb```
+- Python version >= 3.9 installed on your local machine
 
-To train CustomExtracter several images were used for both training and testing and these images have been seprately stored in their respective folders(```Test_Attendance_Sheets``` AND ```Train_Attendance_Sheets```).  Labels for all the images could be found on Google Cloud platform. 
+#### Installation
 
-The ```Unused_images``` are stored seprately for future use. 
+1. Clone the repository to your local machine:
+`git clone <repository_url>`
+  
+2. Navigate to the directory "Streamlit_OCR":
+3. Install all the dependencies:
+  `pip install -r requirements.txt`
+4. Also install Google Cloud CLI installer from here: https://cloud.google.com/sdk/docs/install
+5. The Google Cloud CLI is used for authorisation.
+6. To know how to use Google Cloud CLI for verification watch this: https://www.youtube.com/watch?v=gpAiUerUdEA
 
-## Installation
+### Running Locally
 
-All the ipynb notebooks could be run using **google colab**.  
+Follow these steps to run the project locally:
 
-For running the files locally:  
-* Make sure you have the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en_US&_ga=2.96937945.-752482749.1702469365&_gac=1.3460740.1703278465.EAIaIQobChMIl7mj0_ajgwMVZI9LBR2ypQLIEAAYASAAEgLuc_D_BwE) installed.  
-* Follow the setup instructions in the [Process documents by using client libraries](https://cloud.google.com/document-ai/docs/process-documents-client-libraries?_ga=2.96937945.-752482749.1702469365&_gac=1.3460740.1703278465.EAIaIQobChMIl7mj0_ajgwMVZI9LBR2ypQLIEAAYASAAEgLuc_D_BwE) 
-
+1. Make sure `gemini_chained.py` is in the same folder as `app_trial.py`.
+2. Open `gemini_chained.py` and:
+- Enter your API key in line 282.
+- Update other details from line 17 to 20 and 263 to 265 as needed.
+3. In your terminal, run the following command:
+  `streamlit run app_trial.py`
+  
+### RAG Model 
+The repository ```RAG_muodel``` is for RAG Model using the Q-A bank given to us.
  
+- Final app is ```app.py```
 
-If running for some other project you'll need to change these parameters written on the top of both notebooks.   
-The path of image for which we need the output need to be passed in ```file_path```.
+#### Installation
 
-```python
-project_id = "attendanceextractor"
-location = "us"
-processor_id = "12bf41b9e4b98255"
-processor_version = "rc"
-file_path = "/content/MAHENDRAGARH_NEO_121023_4.jpeg"
-mime_type = "image/jpeg"
+For running the code first install all the dependencies by 
 ```
+pip install -r requirements.txt
+```
+Then run the ```app.py``` file by running the following command on the command propmt to get a stremlit UI
 
-## Usage 
-Using **FormParser**
+```
+streamlit run app.py
+```
+To change the Query please navigate the code in app.py and change the ```message``` variable with whatever Query you want to give in.
 
-![image sample](https://i.postimg.cc/T3G4RVfx/sample.jpg)
-
-Using **CustomExtractor**
-
-![image](https://i.postimg.cc/pXvZ8P7Y/Screenshot-from-2023-12-29-14-43-32.png)
-
-
-## Project Status
-
-Currently we have written the code for a single images to show the results and confirm if they are of any use or not.  
-In future if we continue with these processors only we will automate the complete process and will generate end outcomes all stored in one ```JSON``` file.
